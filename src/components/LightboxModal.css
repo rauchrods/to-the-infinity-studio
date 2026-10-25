@@ -119,3 +119,12 @@
   font-size: 0.85rem;
   color: #aaaaaa;
 }
+
+.lightbox-description {
+  font-family: var(--font-family);
+  font-size: 0.92rem;
+  color: #dddddd;
+  max-width: 650px;
+  margin: 0.5rem auto 0;
+  line-height: 1.5;
+}

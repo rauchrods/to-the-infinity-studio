@@ -83,6 +83,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
       <div className="lightbox-caption">
         <h3 className="lightbox-title">{item.title}</h3>
         {item.client && <p className="lightbox-sub">Client: {item.client}</p>}
+        {item.description && <p className="lightbox-description">{item.description}</p>}
       </div>
     </div>
   );

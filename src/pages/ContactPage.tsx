@@ -219,7 +219,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
                 </Button>
               </div>
 
-              {/* Direct WhatsApp Action using reusable Button */}
+              {/* Direct WhatsApp Action using reusable Button
               <Button
                 variant="whatsapp"
                 size="md"
@@ -228,7 +228,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
                 onClick={handleWhatsAppDispatch}
               >
                 Send Brief via WhatsApp
-              </Button>
+              </Button> */}
 
               {/* Social links */}
               <div className="contact-social-row">
