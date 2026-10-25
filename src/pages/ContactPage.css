@@ -79,34 +79,86 @@
   flex-shrink: 0;
 }
 
-/* Social Row */
+/* Social Row - Symmetrical 3-Column Responsive Grid */
 .contact-social-row {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65rem;
   margin-top: 0.5rem;
+  width: 100%;
 }
 
 .contact-social-link {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
+  gap: 0.45rem;
   font-family: var(--font-family);
-  font-size: 0.88rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.6px;
   text-transform: uppercase;
-  color: #333333;
-  padding: 0.5rem 0.85rem;
+  color: #222222;
+  padding: 0.65rem 0.35rem;
   border: 1px solid #e0e0e0;
   background: #ffffff;
-  transition: all 0.2s ease;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.contact-social-link svg {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
 }
 
 .contact-social-link:hover {
+  transform: translateY(-2px);
+}
+
+.contact-social-link:hover svg {
+  transform: scale(1.1);
+}
+
+/* Instagram Hover */
+.contact-social-instagram:hover {
   background-color: #000000;
   color: #ffffff;
   border-color: #000000;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+}
+
+/* LinkedIn Hover */
+.contact-social-linkedin:hover {
+  background-color: #0a66c2;
+  color: #ffffff;
+  border-color: #0a66c2;
+  box-shadow: 0 4px 14px rgba(10, 102, 194, 0.25);
+}
+
+/* WhatsApp: Signature Subtle Green Accent & Vibrant Hover */
+.contact-social-whatsapp {
+  border-color: #d1fae5;
+  background-color: #ffffff;
+}
+
+.contact-social-whatsapp .contact-whatsapp-icon {
+  color: #25d366;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.contact-social-whatsapp:hover {
+  background-color: #25d366;
+  color: #ffffff;
+  border-color: #25d366;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+}
+
+.contact-social-whatsapp:hover .contact-whatsapp-icon {
+  color: #ffffff;
 }
 
 /* Right Column: Inquiry Form */
@@ -243,6 +295,15 @@
   margin-top: 0.75rem;
 }
 
+.form-actions-group .ui-button {
+  width: 100%;
+  min-width: 0;
+  justify-content: center;
+  padding: 0.85rem 1rem;
+  font-size: 0.84rem;
+  letter-spacing: 1px;
+}
+
 @media (min-width: 540px) {
   .form-actions-group {
     grid-template-columns: 1fr 1fr;
@@ -287,4 +348,34 @@
   color: #389e0d;
   line-height: 1.6;
   max-width: 480px;
+}
+
+/* Responsive adjustments for mobile viewports */
+@media (max-width: 480px) {
+  .contact-details-box {
+    padding: 1.25rem;
+  }
+
+  .contact-social-row {
+    gap: 0.45rem;
+  }
+
+  .contact-social-link {
+    font-size: 0.72rem;
+    padding: 0.55rem 0.25rem;
+    letter-spacing: 0.4px;
+    gap: 0.35rem;
+  }
+}
+
+@media (max-width: 350px) {
+  .contact-social-row {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .contact-social-link {
+    padding: 0.7rem 1rem;
+    font-size: 0.82rem;
+  }
 }

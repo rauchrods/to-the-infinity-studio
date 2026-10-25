@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUp } from 'lucide-react';
-import { InstagramIcon, LinkedinIcon } from './Icons';
+import { InstagramIcon, LinkedinIcon, WhatsAppIcon } from './Icons';
 import { STUDIO_INFO } from '../data/portfolioData';
 import './Footer.css';
 
@@ -60,6 +60,15 @@ export const Footer: React.FC = () => {
             title="LinkedIn"
           >
             <LinkedinIcon size={16} />
+          </a>
+          <a
+            href={STUDIO_INFO.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer-social-btn"
+            title="WhatsApp"
+          >
+            <WhatsAppIcon size={16} />
           </a>
         </div>
 

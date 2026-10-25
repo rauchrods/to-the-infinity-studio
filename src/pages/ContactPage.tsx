@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
-import { Mail, Phone, MapPin, Send, MessageCircle, Copy, Check, CheckCircle2, AlertCircle, Sparkles } from 'lucide-react';
-import { InstagramIcon, LinkedinIcon } from '../components/Icons';
+import { Mail, Phone, MapPin, Send, Copy, Check, CheckCircle2, AlertCircle, Sparkles } from 'lucide-react';
+import { InstagramIcon, LinkedinIcon, WhatsAppIcon } from '../components/Icons';
 import { STUDIO_INFO } from '../data/portfolioData';
 import { PageHeader, Button } from '../components/ui';
 import './ContactPage.css';
@@ -236,19 +236,31 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
                   href={STUDIO_INFO.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="contact-social-link"
+                  className="contact-social-link contact-social-instagram"
+                  title="Follow on Instagram"
                 >
-                  <InstagramIcon size={16} />
+                  <InstagramIcon size={15} />
                   <span>Instagram</span>
                 </a>
                 <a
                   href={STUDIO_INFO.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="contact-social-link"
+                  className="contact-social-link contact-social-linkedin"
+                  title="Connect on LinkedIn"
                 >
-                  <LinkedinIcon size={16} />
+                  <LinkedinIcon size={15} />
                   <span>LinkedIn</span>
+                </a>
+                <a
+                  href={STUDIO_INFO.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="contact-social-link contact-social-whatsapp"
+                  title="Chat on WhatsApp"
+                >
+                  <WhatsAppIcon size={15} className="contact-whatsapp-icon" />
+                  <span>WhatsApp</span>
                 </a>
               </div>
             </div>
@@ -438,7 +450,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
                     type="button"
                     variant="whatsapp"
                     size="md"
-                    icon={<MessageCircle size={18} />}
+                    icon={<WhatsAppIcon size={18} />}
                     onClick={handleWhatsAppDispatch}
                   >
                     Send via WhatsApp
