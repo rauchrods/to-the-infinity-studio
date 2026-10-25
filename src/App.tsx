@@ -1,13 +1,9 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { PortfolioGallery } from './components/PortfolioGallery';
-import { ClientalSection } from './components/ClientalSection';
-import { AboutSection } from './components/AboutSection';
-import { ContactSection } from './components/ContactSection';
-import { LightboxModal } from './components/LightboxModal';
 import { Footer } from './components/Footer';
+import { LightboxModal } from './components/LightboxModal';
+import { WorkPage, ClientalPage, AboutPage, ContactPage } from './pages';
 import { PORTFOLIO_ITEMS, type PortfolioItem } from './data/portfolioData';
 import './App.css';
 
@@ -36,36 +32,17 @@ export function App() {
         <main style={{ flex: 1 }}>
           <Routes>
             {/* Work / Home Page */}
-            <Route
-              path="/"
-              element={
-                <>
-                  <Hero />
-                  <PortfolioGallery onSelectImage={setSelectedImage} pageFilter="work" />
-                </>
-              }
-            />
-            <Route
-              path="/work"
-              element={
-                <>
-                  <Hero />
-                  <PortfolioGallery onSelectImage={setSelectedImage} pageFilter="work" />
-                </>
-              }
-            />
+            <Route path="/" element={<WorkPage onSelectImage={setSelectedImage} />} />
+            <Route path="/work" element={<WorkPage onSelectImage={setSelectedImage} />} />
 
             {/* Cliental Page */}
-            <Route
-              path="/cliental"
-              element={<ClientalSection onSelectImage={setSelectedImage} />}
-            />
+            <Route path="/cliental" element={<ClientalPage onSelectImage={setSelectedImage} />} />
 
             {/* About Page */}
-            <Route path="/about" element={<AboutSection />} />
+            <Route path="/about" element={<AboutPage />} />
 
             {/* Contact Page */}
-            <Route path="/contact" element={<ContactSection />} />
+            <Route path="/contact" element={<ContactPage />} />
           </Routes>
         </main>
 

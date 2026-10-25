@@ -1,0 +1,125 @@
+/* Button.css - Reusable Button Component Styles */
+.ui-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  font-family: var(--font-family);
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 0;
+  outline: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.ui-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Sizes */
+.ui-button-sm {
+  padding: 0.45rem 0.9rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.8px;
+}
+
+.ui-button-md {
+  padding: 0.85rem 1.6rem;
+  font-size: 0.88rem;
+}
+
+.ui-button-lg {
+  padding: 1rem 2.2rem;
+  font-size: 0.95rem;
+  letter-spacing: 1.8px;
+}
+
+/* Full Width */
+.ui-button-full {
+  width: 100%;
+}
+
+/* Variant: Primary (Solid Black) */
+.ui-button-primary {
+  background-color: #000000;
+  color: #ffffff;
+  border-color: #000000;
+}
+
+.ui-button-primary:hover:not(:disabled) {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Variant: Secondary / Outline */
+.ui-button-secondary,
+.ui-button-outline {
+  background-color: #ffffff;
+  color: #000000;
+  border-color: #000000;
+}
+
+.ui-button-secondary:hover:not(:disabled),
+.ui-button-outline:hover:not(:disabled) {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* Variant: WhatsApp (Signature Green) */
+.ui-button-whatsapp {
+  background-color: #25d366;
+  color: #ffffff;
+  border-color: #25d366;
+  border-radius: 3px;
+}
+
+.ui-button-whatsapp:hover:not(:disabled) {
+  background-color: #1eb956;
+  border-color: #1eb956;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+}
+
+/* Variant: Copy / Pill Action */
+.ui-button-copy {
+  background: none;
+  border-color: #d5d5d5;
+  color: #555555;
+  font-weight: 700;
+  border-radius: 2px;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.6px;
+}
+
+.ui-button-copy:hover:not(:disabled) {
+  background-color: #000000;
+  color: #ffffff;
+  border-color: #000000;
+}
+
+/* Spinner for Loading State */
+.ui-button-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #ffffff;
+  animation: ui-btn-spin 0.6s linear infinite;
+}
+
+.ui-button-outline .ui-button-spinner {
+  border-color: rgba(0, 0, 0, 0.2);
+  border-top-color: #000000;
+}
+
+@keyframes ui-btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

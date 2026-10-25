@@ -1,25 +1,25 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Check } from 'lucide-react';
 import { STUDIO_INFO } from '../data/portfolioData';
-import './AboutSection.css';
+import { PageHeader, Button } from '../components/ui';
+import './AboutPage.css';
 
-export const AboutSection: React.FC = () => {
+export const AboutPage: React.FC = () => {
+  const navigate = useNavigate();
+
   const curatedServices = [
-    "Product Photography",
-    "E-Commerce Product Shots",
-    "Beauty, Skincare & Fashion Imagery",
-    "Concept Development & Styling"
+    'Product Photography',
+    'E-Commerce Product Shots',
+    'Beauty, Skincare & Fashion Imagery',
+    'Concept Development & Styling',
   ];
 
   return (
-    <section className="about-page-section">
+    <section className="about-page">
       <div className="container">
-        {/* Header Block matching original site */}
-        <div className="about-header-block">
-          <h1 className="about-page-title">ABOUT</h1>
-          <div className="original-divider" />
-        </div>
+        {/* Reusable PageHeader Component */}
+        <PageHeader title="ABOUT" />
 
         {/* 2-Column Split: Portrait & Biography */}
         <div className="about-grid">
@@ -41,16 +41,12 @@ export const AboutSection: React.FC = () => {
             <div>
               <h2 className="about-title">{STUDIO_INFO.founder}</h2>
               <h3 className="about-subtitle">Defining Brands Through Precision</h3>
-              <p className="about-text">
-                {STUDIO_INFO.bio}
-              </p>
+              <p className="about-text">{STUDIO_INFO.bio}</p>
             </div>
 
             <div>
               <h4 className="about-section-heading">My Expertise</h4>
-              <p className="about-text">
-                {STUDIO_INFO.expertise}
-              </p>
+              <p className="about-text">{STUDIO_INFO.expertise}</p>
             </div>
 
             <div>
@@ -65,10 +61,18 @@ export const AboutSection: React.FC = () => {
               </ul>
             </div>
 
-            <Link to="/contact" className="about-action-btn">
-              <span>Book Studio Shoot</span>
-              <ArrowRight size={16} />
-            </Link>
+            {/* Reusable Button UI Component */}
+            <div style={{ marginTop: '0.5rem' }}>
+              <Button
+                variant="primary"
+                size="md"
+                icon={<ArrowRight size={16} />}
+                iconPosition="right"
+                onClick={() => navigate('/contact')}
+              >
+                Book Studio Shoot
+              </Button>
+            </div>
           </div>
         </div>
       </div>

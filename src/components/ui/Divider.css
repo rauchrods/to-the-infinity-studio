@@ -1,0 +1,7 @@
+/* Divider.css */
+.ui-divider {
+  width: 100px;
+  height: 6px;
+  background-color: #000000;
+  margin: 1.5rem auto;
+}

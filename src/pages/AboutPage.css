@@ -1,22 +1,8 @@
-/* AboutSection.css - Clean White Editorial Theme */
-.about-page-section {
+/* AboutPage.css - Clean White Editorial Theme */
+.about-page {
   background-color: #ffffff;
   padding: 60px 0 100px;
-}
-
-.about-header-block {
-  text-align: center;
-  margin-bottom: 50px;
-}
-
-.about-page-title {
-  font-family: var(--font-family);
-  font-size: 2.2rem;
-  font-weight: 900;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #000000;
-  margin-bottom: 0.8rem;
+  min-height: calc(100vh - 80px);
 }
 
 .about-grid {
@@ -149,39 +135,4 @@
 .about-service-item:hover {
   background-color: #f0f0f0;
   transform: translateX(4px);
-}
-
-.about-service-bullet {
-  width: 6px;
-  height: 6px;
-  background-color: #000000;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-/* Action Button */
-.about-action-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  background-color: #000000;
-  color: #ffffff;
-  padding: 0.95rem 2rem;
-  font-family: var(--font-family);
-  font-size: 0.9rem;
-  font-weight: 900;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  text-decoration: none;
-  border: 1px solid #000000;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  align-self: flex-start;
-  margin-top: 1rem;
-}
-
-.about-action-btn:hover {
-  background-color: #ffffff;
-  color: #000000;
 }

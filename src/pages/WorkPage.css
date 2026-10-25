@@ -1,0 +1,5 @@
+/* WorkPage.css - Work / Home Portfolio Page */
+.work-page {
+  background-color: #ffffff;
+  min-height: calc(100vh - 80px);
+}

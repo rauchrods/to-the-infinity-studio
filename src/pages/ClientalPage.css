@@ -1,0 +1,16 @@
+/* ClientalPage.css - Cliental Showcase Page */
+.cliental-page {
+  background-color: #ffffff;
+  padding: 60px 0 100px;
+  min-height: calc(100vh - 80px);
+}
+
+.cliental-brands-roster {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  margin: 1.5rem auto 3rem;
+  max-width: 900px;
+}

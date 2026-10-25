@@ -1,14 +1,15 @@
 import React, { useState, useRef } from 'react';
 import { Mail, Phone, MapPin, Send, MessageCircle, Copy, Check, CheckCircle2, AlertCircle, Sparkles } from 'lucide-react';
-import { InstagramIcon, LinkedinIcon } from './Icons';
+import { InstagramIcon, LinkedinIcon } from '../components/Icons';
 import { STUDIO_INFO } from '../data/portfolioData';
-import './ContactSection.css';
+import { PageHeader, Button } from '../components/ui';
+import './ContactPage.css';
 
-interface ContactSectionProps {
+interface ContactPageProps {
   onShowToast?: (message: string) => void;
 }
 
-export const ContactSection: React.FC<ContactSectionProps> = ({ onShowToast }) => {
+export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
   const [formData, setFormData] = useState({
     name: '',
     brand: '',
@@ -156,17 +157,14 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onShowToast }) =
   };
 
   return (
-    <section className="contact-section" id="contact-section">
+    <section className="contact-page" id="contact-page">
       <div className="container">
-        {/* Header Block matching original site */}
-        <div className="contact-header-block">
-          <h1 className="contact-page-title">CONTACT</h1>
-          <div className="original-divider" />
-          <p className="contact-tagline">TO THE ∞ STUDIO</p>
-          <p className="contact-subtext">
-            Commercial & editorial photography inquiries, rate cards, and studio booking requests.
-          </p>
-        </div>
+        {/* Reusable PageHeader UI Component */}
+        <PageHeader
+          title="CONTACT"
+          tagline="TO THE ∞ STUDIO"
+          description="Commercial & editorial photography inquiries, rate cards, and studio booking requests."
+        />
 
         {/* 2-Column Split: Studio Info & Working Form */}
         <div className="contact-grid">
@@ -189,49 +187,48 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onShowToast }) =
                 </div>
               </div>
 
-              {/* Phone with click-to-call and copy */}
+              {/* Phone with click-to-call and copy button */}
               <div className="contact-detail-row">
                 <div className="contact-detail-left">
                   <Phone size={18} className="contact-icon" />
                   <a href={`tel:${STUDIO_INFO.phoneRaw}`}>{STUDIO_INFO.phone}</a>
                 </div>
-                <button
-                  type="button"
-                  className="contact-copy-btn"
+                <Button
+                  variant="copy"
+                  size="sm"
+                  icon={copiedField === 'phone' ? <Check size={12} /> : <Copy size={12} />}
                   onClick={() => handleCopy(STUDIO_INFO.phoneRaw, 'phone')}
-                  title="Copy Phone Number"
                 >
-                  {copiedField === 'phone' ? <Check size={12} /> : <Copy size={12} />}
-                  <span>{copiedField === 'phone' ? 'Copied' : 'Copy'}</span>
-                </button>
+                  {copiedField === 'phone' ? 'Copied' : 'Copy'}
+                </Button>
               </div>
 
-              {/* Email with mailto and copy */}
+              {/* Email with mailto and copy button */}
               <div className="contact-detail-row">
                 <div className="contact-detail-left">
                   <Mail size={18} className="contact-icon" />
                   <a href={`mailto:${STUDIO_INFO.email}`}>{STUDIO_INFO.email}</a>
                 </div>
-                <button
-                  type="button"
-                  className="contact-copy-btn"
+                <Button
+                  variant="copy"
+                  size="sm"
+                  icon={copiedField === 'email' ? <Check size={12} /> : <Copy size={12} />}
                   onClick={() => handleCopy(STUDIO_INFO.email, 'email')}
-                  title="Copy Email Address"
                 >
-                  {copiedField === 'email' ? <Check size={12} /> : <Copy size={12} />}
-                  <span>{copiedField === 'email' ? 'Copied' : 'Copy'}</span>
-                </button>
+                  {copiedField === 'email' ? 'Copied' : 'Copy'}
+                </Button>
               </div>
 
-              {/* Direct WhatsApp Action - Guides to prefilled form payload */}
-              <button
-                type="button"
-                className="whatsapp-cta-btn"
+              {/* Direct WhatsApp Action using reusable Button */}
+              <Button
+                variant="whatsapp"
+                size="md"
+                fullWidth
+                icon={<MessageCircle size={18} />}
                 onClick={handleWhatsAppDispatch}
               >
-                <MessageCircle size={18} />
-                <span>Send Brief via WhatsApp</span>
-              </button>
+                Send Brief via WhatsApp
+              </Button>
 
               {/* Social links */}
               <div className="contact-social-row">
@@ -304,9 +301,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onShowToast }) =
                     </>
                   )}
                 </p>
-                <button
-                  type="button"
-                  className="form-reset-btn"
+                <Button
+                  variant="outline"
+                  size="sm"
                   onClick={() => {
                     setIsSubmitted(false);
                     setShowWhatsAppPrompt(false);
@@ -321,7 +318,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onShowToast }) =
                   }}
                 >
                   Send Another Message
-                </button>
+                </Button>
               </div>
             ) : (
               <form onSubmit={handleEmailSubmit} className="contact-form">
@@ -425,25 +422,27 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onShowToast }) =
                   />
                 </div>
 
-                {/* Dual Action Buttons: Email and WhatsApp */}
+                {/* Dual Action Reusable Buttons: Email and WhatsApp */}
                 <div className="form-actions-group">
-                  <button
+                  <Button
                     type="submit"
-                    disabled={isSubmitting}
-                    className="form-submit-email-btn"
+                    variant="primary"
+                    size="md"
+                    loading={isSubmitting}
+                    icon={<Send size={16} />}
                   >
-                    <Send size={16} />
-                    <span>{isSubmitting ? 'Sending Email...' : 'Send via Email'}</span>
-                  </button>
+                    {isSubmitting ? 'Sending Email...' : 'Send via Email'}
+                  </Button>
 
-                  <button
+                  <Button
                     type="button"
+                    variant="whatsapp"
+                    size="md"
+                    icon={<MessageCircle size={18} />}
                     onClick={handleWhatsAppDispatch}
-                    className="form-submit-whatsapp-btn"
                   >
-                    <MessageCircle size={18} />
-                    <span>Send via WhatsApp</span>
-                  </button>
+                    Send via WhatsApp
+                  </Button>
                 </div>
               </form>
             )}
