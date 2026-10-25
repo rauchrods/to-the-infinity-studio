@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { CLIENT_BRANDS, PORTFOLIO_ITEMS, type PortfolioItem } from '../data/portfolioData';
 import { ImageCard } from './ImageCard';
+import { CustomSelect } from './ui';
 import './PortfolioGallery.css';
 
 interface PortfolioGalleryProps {
@@ -27,6 +28,34 @@ export const PortfolioGallery: React.FC<PortfolioGalleryProps> = ({
     { id: 'commercial', label: 'Commercial' },
   ];
 
+  // Calculate counts per brand for the dropdown options
+  const brandOptions = useMemo(() => {
+    const counts: Record<string, number> = {};
+    let totalCliental = 0;
+
+    PORTFOLIO_ITEMS.forEach((item) => {
+      if (item.page === 'cliental' || item.page === 'both') {
+        totalCliental++;
+        if (item.client) {
+          counts[item.client] = (counts[item.client] || 0) + 1;
+        }
+      }
+    });
+
+    return [
+      {
+        value: 'all',
+        label: 'ALL BRANDS',
+        count: totalCliental
+      },
+      ...CLIENT_BRANDS.map((brand) => ({
+        value: brand,
+        label: brand.toUpperCase(),
+        count: counts[brand] || 0
+      }))
+    ];
+  }, []);
+
   const filteredItems = useMemo(() => {
     return PORTFOLIO_ITEMS.filter((item) => {
       const matchesPage =
@@ -49,7 +78,7 @@ export const PortfolioGallery: React.FC<PortfolioGalleryProps> = ({
   return (
     <section className="portfolio-gallery-section">
       <div className="container">
-        {/* Controls Bar: Category Filters & Brand Dropdown */}
+        {/* Controls Bar: Category Filters & Luxury Custom Brand Dropdown */}
         <div className="gallery-filter-bar">
           <div className="gallery-categories-group">
             {categories.map((cat) => (
@@ -65,22 +94,14 @@ export const PortfolioGallery: React.FC<PortfolioGalleryProps> = ({
 
           {pageFilter === 'cliental' && (
             <div className="gallery-brand-filter-group">
-              <label htmlFor="gallery-brand-select" className="gallery-brand-label">
-                Client Brand:
-              </label>
-              <select
+              <CustomSelect
                 id="gallery-brand-select"
+                label="CLIENT BRAND:"
                 value={selectedBrand}
-                onChange={(e) => onSelectBrand?.(e.target.value)}
-                className="gallery-brand-dropdown"
-              >
-                <option value="all">All Brands ({CLIENT_BRANDS.length})</option>
-                {CLIENT_BRANDS.map((brand) => (
-                  <option key={brand} value={brand}>
-                    {brand}
-                  </option>
-                ))}
-              </select>
+                onChange={(val) => onSelectBrand?.(val)}
+                options={brandOptions}
+                placeholder="ALL BRANDS"
+              />
             </div>
           )}
         </div>
