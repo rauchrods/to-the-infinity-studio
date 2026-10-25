@@ -1,0 +1,54 @@
+/* PortfolioGallery.css - Clean White Gallery Layout */
+.portfolio-gallery-section {
+  background-color: #ffffff;
+  padding: 20px 0 80px 0;
+}
+
+.gallery-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.filter-btn {
+  font-family: var(--font-family);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #666666;
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 0.5rem 1.1rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.filter-btn:hover {
+  color: #000000;
+  border-color: #e0e0e0;
+}
+
+.filter-btn.active {
+  color: #ffffff;
+  background-color: #000000;
+  border-color: #000000;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 2rem;
+}
+
+@media (max-width: 600px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
