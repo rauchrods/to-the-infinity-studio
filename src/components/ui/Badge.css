@@ -2,23 +2,75 @@
 .ui-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.55rem 1.25rem;
+  gap: 0.5rem;
+  padding: 0.5rem 1.15rem;
   background-color: #f8f8f8;
   border: 1px solid #e5e5e5;
   border-radius: 30px;
   font-family: var(--font-family);
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.8px;
   text-transform: uppercase;
-  color: #222222;
-  transition: all 0.2s ease;
+  color: #333333;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   user-select: none;
+  line-height: 1.2;
 }
 
-.ui-badge:hover {
+.ui-badge-clickable {
+  cursor: pointer;
+  appearance: none;
+  outline: none;
+}
+
+.ui-badge-clickable:hover {
+  background-color: #ffffff;
+  color: #000000;
+  border-color: #000000;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.ui-badge-clickable:focus-visible {
+  outline: 2px solid #000000;
+  outline-offset: 2px;
+}
+
+.ui-badge.active,
+.ui-badge-clickable.active {
   background-color: #000000;
   color: #ffffff;
   border-color: #000000;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+  transform: translateY(-1px);
 }
+
+.ui-badge.active:hover,
+.ui-badge-clickable.active:hover {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  border-color: #1a1a1a;
+}
+
+.ui-badge-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.35rem;
+  height: 1.35rem;
+  padding: 0 0.4rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  background-color: #e8e8e8;
+  color: #555555;
+  transition: all 0.2s ease;
+}
+
+.ui-badge.active .ui-badge-count,
+.ui-badge-clickable.active .ui-badge-count {
+  background-color: rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+}
+

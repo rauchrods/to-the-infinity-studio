@@ -556,7 +556,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     featured: true,
     aspect: "portrait",
     description: "Fine jewelry diamond tennis necklace cascading organically over the edge of an opened tin of sweetened condensed milk with a gold spoon and silver fork on white.",
-    page: "work"
+    page: "both"
   },
   {
     id: "work-42",
@@ -568,7 +568,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     featured: false,
     aspect: "portrait",
     description: "Brilliant round diamond cluster drop earrings nestled in the natural cradle of a freshly cracked emerald green pea pod with a polished stainless steel spoon.",
-    page: "work"
+    page: "both"
   },
   {
     id: "work-43",
@@ -580,7 +580,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     featured: false,
     aspect: "portrait",
     description: "A sparkling diamond solitaire engagement ring nestled among fresh green split peas, resting beside the polished prongs of an antique dining fork.",
-    page: "work"
+    page: "both"
   },
   {
     id: "work-44",
@@ -592,7 +592,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     featured: false,
     aspect: "portrait",
     description: "Sculptural yellow gold hoop earrings threaded elegantly through the tines of an ornate vintage silver fork on an editorial studio tabletop.",
-    page: "work"
+    page: "both"
   },
   {
     id: "work-45",
@@ -604,7 +604,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     featured: false,
     aspect: "portrait",
     description: "Lustrous multi-diamond pavé band ring poised delicately along the scalloped rim of vintage bone china tableware.",
-    page: "work"
+    page: "both"
   },
   {
     id: "work-46",
@@ -616,7 +616,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     featured: false,
     aspect: "portrait",
     description: "Artisan diamond drop necklace suspended over a curved silver dessert spoon with dripping liquid golden nectar.",
-    page: "work"
+    page: "both"
   },
   {
     id: "work-47",
@@ -628,7 +628,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     featured: false,
     aspect: "portrait",
     description: "Minimalist solid gold bangle curved naturally around a vibrant green botanical stem against a soft daylight gradient.",
-    page: "work"
+    page: "both"
   },
   {
     id: "work-48",
@@ -640,7 +640,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     featured: false,
     aspect: "portrait",
     description: "Bold gold signet ring embedded with brilliant-cut diamonds resting next to dark roasted espresso beans and a porcelain cup.",
-    page: "work"
+    page: "both"
   },
   {
     id: "work-49",
@@ -652,7 +652,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     featured: false,
     aspect: "portrait",
     description: "Architectural twin diamond eternity bands contrasted against the rugged matte texture of broken natural charcoal slate.",
-    page: "work"
+    page: "both"
   },
   {
     id: "work-50",
@@ -664,7 +664,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     featured: true,
     aspect: "portrait",
     description: "Vivid green Colombian emerald and brilliant diamond tennis bracelet resting gracefully atop translucent accordion-pleated ivory silk.",
-    page: "work"
+    page: "both"
   },
   {
     id: "work-51",

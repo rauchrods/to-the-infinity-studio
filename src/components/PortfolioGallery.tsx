@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
-import { PORTFOLIO_ITEMS, type PortfolioItem } from '../data/portfolioData';
+import React, { useState, useMemo } from 'react';
+import { CLIENT_BRANDS, PORTFOLIO_ITEMS, type PortfolioItem } from '../data/portfolioData';
 import { ImageCard } from './ImageCard';
 import './PortfolioGallery.css';
 
 interface PortfolioGalleryProps {
   onSelectImage: (item: PortfolioItem) => void;
   pageFilter?: 'work' | 'cliental';
+  selectedBrand?: string;
+  onSelectBrand?: (brand: string) => void;
 }
 
-export const PortfolioGallery: React.FC<PortfolioGalleryProps> = ({ onSelectImage, pageFilter = 'work' }) => {
+export const PortfolioGallery: React.FC<PortfolioGalleryProps> = ({
+  onSelectImage,
+  pageFilter = 'work',
+  selectedBrand = 'all',
+  onSelectBrand
+}) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
   const categories = [
@@ -20,40 +27,142 @@ export const PortfolioGallery: React.FC<PortfolioGalleryProps> = ({ onSelectImag
     { id: 'commercial', label: 'Commercial' },
   ];
 
-  const filteredItems = PORTFOLIO_ITEMS.filter((item) => {
-    const matchesPage = pageFilter === 'work' ? (item.page === 'work' || item.page === 'both') : (item.page === 'cliental' || item.page === 'both');
-    const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
-    return matchesPage && matchesCategory;
-  });
+  const filteredItems = useMemo(() => {
+    return PORTFOLIO_ITEMS.filter((item) => {
+      const matchesPage =
+        pageFilter === 'work'
+          ? item.page === 'work' || item.page === 'both'
+          : item.page === 'cliental' || item.page === 'both';
+
+      const matchesCategory =
+        selectedCategory === 'all' || item.category === selectedCategory;
+
+      const matchesBrand =
+        !selectedBrand ||
+        selectedBrand === 'all' ||
+        item.client?.toLowerCase() === selectedBrand.toLowerCase();
+
+      return matchesPage && matchesCategory && matchesBrand;
+    });
+  }, [pageFilter, selectedCategory, selectedBrand]);
 
   return (
     <section className="portfolio-gallery-section">
       <div className="container">
-        {/* Category Filters */}
+        {/* Controls Bar: Category Filters & Brand Dropdown */}
         <div className="gallery-filter-bar">
-          {categories.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setSelectedCategory(cat.id)}
-              className={`filter-btn ${selectedCategory === cat.id ? 'active' : ''}`}
-            >
-              {cat.label}
-            </button>
-          ))}
+          <div className="gallery-categories-group">
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setSelectedCategory(cat.id)}
+                className={`filter-btn ${selectedCategory === cat.id ? 'active' : ''}`}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
+
+          {pageFilter === 'cliental' && (
+            <div className="gallery-brand-filter-group">
+              <label htmlFor="gallery-brand-select" className="gallery-brand-label">
+                Client Brand:
+              </label>
+              <select
+                id="gallery-brand-select"
+                value={selectedBrand}
+                onChange={(e) => onSelectBrand?.(e.target.value)}
+                className="gallery-brand-dropdown"
+              >
+                <option value="all">All Brands ({CLIENT_BRANDS.length})</option>
+                {CLIENT_BRANDS.map((brand) => (
+                  <option key={brand} value={brand}>
+                    {brand}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
         </div>
 
-        {/* Gallery Grid */}
-        <div className="gallery-grid">
-          {filteredItems.map((item, index) => (
-            <ImageCard
-              key={item.id}
-              item={item}
-              onSelect={onSelectImage}
-              priority={index < 4}
-            />
-          ))}
-        </div>
+        {/* Active Filter Strip when filtering by Brand */}
+        {pageFilter === 'cliental' && selectedBrand !== 'all' && (
+          <div className="gallery-active-filter-strip">
+            <div className="active-filter-badge">
+              <span className="active-filter-tag">Brand:</span>
+              <span className="active-filter-name">{selectedBrand}</span>
+              <button
+                type="button"
+                className="active-filter-remove"
+                onClick={() => onSelectBrand?.('all')}
+                title="Clear brand filter"
+                aria-label={`Remove ${selectedBrand} filter`}
+              >
+                ✕
+              </button>
+            </div>
+
+            <span className="active-filter-summary">
+              Showing <strong>{filteredItems.length}</strong> {filteredItems.length === 1 ? 'project' : 'projects'}
+            </span>
+
+            {selectedCategory !== 'all' && (
+              <button
+                type="button"
+                className="active-filter-clear-cat"
+                onClick={() => setSelectedCategory('all')}
+              >
+                Show all {selectedBrand} categories
+              </button>
+            )}
+          </div>
+        )}
+
+        {/* Gallery Grid or Empty State */}
+        {filteredItems.length > 0 ? (
+          <div className="gallery-grid">
+            {filteredItems.map((item, index) => (
+              <ImageCard
+                key={item.id}
+                item={item}
+                onSelect={onSelectImage}
+                priority={index < 4}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="gallery-empty-state">
+            <div className="empty-state-symbol">✦</div>
+            <h3 className="empty-state-title">No matching campaigns found</h3>
+            <p className="empty-state-message">
+              No {selectedCategory !== 'all' ? `"${selectedCategory}"` : ''} images found for{' '}
+              <strong>{selectedBrand}</strong>.
+            </p>
+            <div className="empty-state-actions">
+              {selectedCategory !== 'all' && (
+                <button
+                  type="button"
+                  className="empty-state-btn"
+                  onClick={() => setSelectedCategory('all')}
+                >
+                  View all {selectedBrand} campaigns
+                </button>
+              )}
+              <button
+                type="button"
+                className="empty-state-btn empty-state-btn-primary"
+                onClick={() => {
+                  setSelectedCategory('all');
+                  onSelectBrand?.('all');
+                }}
+              >
+                Reset All Filters
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
 };
+
